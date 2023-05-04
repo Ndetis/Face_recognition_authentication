@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_snack"
+    tools:context=".AddFaceActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/lavender"
+        android:elevation="4dp"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/Theme.AppCompat.DayNight"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:titleMarginStart="40dp" />
+
+    <ImageView
+        android:id="@+id/Imageprev"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src ="@drawable/ic_baseline_add_photo_alternate_24" />
+
+    <Button
+        android:id="@+id/cpic"
+        android:text="Take Picture"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:textSize="13sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:backgroundTint="?android:attr/textColorHighlight"
+        app:cornerRadius ="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:textSize="13sp"
+        android:text="Upload Image"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:backgroundTint="@color/design_default_color_secondary_variant"
+        app:cornerRadius ="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"/>
+
+
+</RelativeLayout>

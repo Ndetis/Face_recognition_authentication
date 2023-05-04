@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UserInfoActivity"
+    android:id="@+id/usersnackbar"
+    android:gravity="center">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/userInfo_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/lavender"
+        android:elevation="4dp"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/Theme.AppCompat.DayNight"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:titleMarginStart="40dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="55dp"
+        android:gravity="center">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginTop="8dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+
+                app:cardCornerRadius="30dp"
+                app:cardElevation="20dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_edittext">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="User Details"
+                        android:textSize="35sp"
+                        android:textAlignment="center"
+                        android:textStyle="italic"
+                        android:textColor="@color/black"
+                        android:shadowColor="@color/lavender"
+                        android:shadowDx="@android:integer/status_bar_notification_info_maxnum"
+                        android:shadowDy="@android:integer/status_bar_notification_info_maxnum"
+                        android:shadowRadius="5"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserId"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="id"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserName"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="Name"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserSurname"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="Surname"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserMatricule"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="Matricule"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserFiliere"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="Filiere"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserNiveau"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="Niveau"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserTransaction"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="N° Transaction"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserTranche"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="Tranche"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/UserPrix"
+                        android:background="@drawable/custom_edittext"
+                        android:layout_marginTop="30dp"
+                        android:padding="8dp"
+                        android:hint="($) Somme "
+                        android:textAlignment="center"
+                        android:textColorHint="@color/lavender"
+                        android:textColor="@color/black"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:text="Submit"
+                        android:id="@+id/Submit_btn"
+                        android:textSize="18sp"
+                        app:cornerRadius ="20dp"
+                        android:backgroundTint="@color/lavender"
+                        android:layout_marginTop="30dp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="6dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a Modal BottomSheet"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/id_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:minLines="1"/>
+
+    <TextView
+        android:id="@+id/name_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+
+    <TextView
+        android:id="@+id/surname_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+
+    <TextView
+        android:id="@+id/matricule_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+    <TextView
+        android:id="@+id/filiere_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+
+    <TextView
+        android:id="@+id/niveau_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+
+    <TextView
+        android:id="@+id/transaction_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+
+    <TextView
+        android:id="@+id/tranche_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+
+    <TextView
+        android:id="@+id/somme_reco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="38dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:minLines="1"/>
+
+</LinearLayout>

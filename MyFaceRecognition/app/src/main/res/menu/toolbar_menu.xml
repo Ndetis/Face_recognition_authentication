@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/theme"
+        android:title="Camera"
+        android:icon="@drawable/ic_baseline_brightness_4_24"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:title="Header"
+        android:id="@+id/ChangeHearder"/>
+
+    <item
+        android:title="Update person data"
+        android:id="@+id/update_person"/>
+
+    <item
+        android:title="Contact Us"
+        android:id="@+id/Contact"/>
+
+</menu>
