@@ -14,13 +14,16 @@ from flask import request,Response
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 from datetime import date
+from deepface import DeepFace
+import json
+import os
 
 
 #function to detect face from image
 def faceDetect(img,filename):
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     try:
-        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         for (x,y,w,h) in faces:
             img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
@@ -31,7 +34,7 @@ def faceDetect(img,filename):
         resp = "Image Uploaded Successfully"
     except:
         resp = "This image does not have a face"
-        print(resp)
+    print(resp)
     #response
     return resp 
 
@@ -51,18 +54,19 @@ def getImagesAndLabels(path):
 
 
 #function for train images
-def TrainImages():
-    resp = "This image does not have a face, so cannot train image"
+def TrainImages(): 
     try:
         #recognizer=cv2.face.createEigenFaceRecognizer()
         #recognizer=cv2.face.createFisherFaceRecognizer()
-        recognizer=cv2.face.LBPHFaceRecognizer_create()
+        recognizer = cv2.face.LBPHFaceRecognizer_create()
         path="static"
-        Ids,faces= getImagesAndLabels(path)
+        Ids,faces = getImagesAndLabels(path)
         recognizer.train(faces,Ids)
-        recognizer.save('trainingData.yml')
+        recognizer.save("trainingData.yml")
+        resp="training image successfully"
     except:
-        print(resp)
+        resp = "This image does not have a face, so cannot train image"
+    print(resp)
         
  
         
@@ -72,7 +76,13 @@ app = Flask(__name__)
  
 @app.route("/")
 def showHomePage():
-    return "home page"
+    path="static"
+    imagePaths = [os.path.join(path, f) for f in os.listdir(path)]  
+    #for imagePath in imagePaths:
+        #Id = int(os.path.split(imagePath)[-1].split(".")[1])
+    #result = DeepFace.verify(img1_path = "imagesTorecognize/null.1.jpg", img2_path = "imagesTorecognize/null.1.jpg")
+    #print(str(Id))
+    return "This is home page"#+" : "+ str(Id)
 
 
 connect = sqlite3.connect('mycampusface.db')
@@ -125,14 +135,13 @@ def upload():
     img = asarray(Image.open("ClientImages/"+filename))
     #process image
     img_processed = faceDetect(img,filename)
-    TrainImages()
+    #TrainImages()
     #Response
     return img_processed
 
 
 @app.route("/api/recognize_faces", methods=["GET","POST"])
-def detect_faces():   
-    resp = "Unknown"    
+def detect_faces():      
     #receive image of faces
     our_image = request.files["image"]
     filename = werkzeug.utils.secure_filename(our_image.filename)
@@ -142,8 +151,40 @@ def detect_faces():
     image = asarray(Image.open("imagesTorecognize/"+filename))
     
     #Start recognition
+    path="ClientImages"
+    imagePaths = [os.path.join(path, f) for f in os.listdir(path)] 
+    for imagePath in imagePaths:
+        print(imagePath) 
+        try:
+            result = DeepFace.verify(img1_path = image, img2_path = imagePath)
+            print(result)
+            if(result['verified']==True):
+                Id = int(os.path.split(imagePath)[-1].split(".")[0])
+                print(str(Id))
+                connect = sqlite3.connect('mycampusface.db')
+                cursors = connect.cursor()
+                cursors.execute('SELECT * FROM ETUDIANT WHERE id={}'.format(Id))
+                datas = cursors.fetchall()
+                for row in datas:
+                    resp = str(row[0])+','+str(row[1])+','+str(row[2])+','+str(row[3])+','+str(row[4])+','+str(row[5])+','+str(row[6])+','+str(row[7])+','+str(row[8])
+                    with sqlite3.connect('mycampusface.db') as user:
+                        cursors = user.cursor()
+                        cursors.execute("INSERT INTO RECONNU(id,username,usersurname,usermatricule,userfiliere,userniveau,usertransaction,usertranche,userprice,annee) VALUES (?,?,?,?,?,?,?,?,?,?)",(str(row[0]),str(row[1]),str(row[2]),str(row[3]),str(row[4]),str(row[5]),str(row[6]),str(row[7]),str(row[8]),date.today()))
+                    user.commit()
+                break
+            else:
+                resp = "Unknown"
+        except :
+            resp="Image with any face or image of poor quality"
 
-    try:
+
+    print (resp)    
+    #Response
+    return resp
+
+"""    try:
+        imagePaths = [os.path.join(path, f) for f in os.listdir(path)]  
+    for imagePath in imagePaths:
         #rec=cv2.face.createEigenFaceRecognizer()
         #rec=cv2.face.createFisherFaceRecognizer()
         rec=cv2.face.LBPHFaceRecognizer_create()
@@ -156,14 +197,14 @@ def detect_faces():
             # To draw a rectangle in a face
             cv2.rectangle(image, (x, y), (x+w, y+h), (255, 255, 0), 2)
             id, uncertainty = rec.predict(gray[y:y+h, x:x+w])
-            print(id, uncertainty)
+            print(id,uncertainty)
             
             connect = sqlite3.connect('mycampusface.db')
             cursors = connect.cursor()
             cursors.execute('SELECT * FROM ETUDIANT WHERE id={}'.format(id))
             datas = cursors.fetchall()
         
-            if (uncertainty<= 120):
+            if (uncertainty<= 100):
                 for row in datas:
                     resp = str(row[0])+','+str(row[1])+','+str(row[2])+','+str(row[3])+','+str(row[4])+','+str(row[5])+','+str(row[6])+','+str(row[7])+','+str(row[8])
                     with sqlite3.connect('mycampusface.db') as user:
@@ -174,9 +215,8 @@ def detect_faces():
                 resp = "Unknown"     
     except:
         resp
-    print (resp) 
-    #Response
-    return resp
+    print (resp)""" 
+   
 
 
 @app.route("/api/users_recognize")
@@ -200,4 +240,4 @@ def getUsers():
 
 
 if __name__ == "__main__":
-  app.run(host="0.0.0.0",port=5000,debug=True)
+  app.run(host="0.0.0.0",port=500,debug=True)
